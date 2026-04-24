@@ -16,22 +16,42 @@
 
 @layer base {
   body {
-    @apply bg-surface text-on-surface font-sans selection:bg-primary/30;
+    @apply bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased;
     cursor: none;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1c1b1b;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff4f72;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-zinc-950/40 backdrop-blur-xl border border-white/5;
+    @apply bg-zinc-950/60 backdrop-blur-xl border border-white/5;
   }
   
   .text-glow {
-    text-shadow: 0 0 15px currentColor;
+    text-shadow: 0 0 10px rgba(255, 79, 114, 0.4), 0 0 20px rgba(255, 79, 114, 0.2);
   }
 
   .vignette {
     background: radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%);
+  }
+
+  .interactive-hover #cursor-follower {
+    @apply w-12 h-12 bg-primary/10 border-2;
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
   }
 }
 
@@ -46,6 +66,7 @@
   transform: translate(-50%, -50%);
   box-shadow: 0 0 15px rgba(255, 79, 114, 0.5);
   display: none;
+  transition: width 0.2s ease, height 0.2s ease;
 }
 
 @media (min-width: 768px) {
